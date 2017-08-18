@@ -1,0 +1,101 @@
+.logo {
+  background:none !important;
+  border: 0 !important;
+  box-shadow: 0 0 !important;
+}
+#environments img {
+  height:200px;
+  margin:0 50px;
+}
+.slide-number {
+  font-size:20px !important;
+}
+.subtitle {
+  color:#aaa !important;
+  font-weight: 100 !important;
+  font-style: italic !important;
+  font-size:22pt !important;
+}
+#bottom-left {
+  position:absolute;
+  bottom:12px;
+  left:10px;
+  font-size:55%;
+  z-index:1
+}
+a:hover {
+  color: #FFBB00 !important;
+}
+
+.table {
+  width: 80% !important;
+  table-layout : fixed;
+  font-size:30pt !important;
+}
+.table td {
+  border: 0px !important;
+}
+.table .icon {
+  font-size:70pt !important;
+}
+.icon {
+  color: #FFBB00 !important;
+  text-shadow: 0 0 60px #999 !important;
+}
+.center-table td {
+  text-align:center !important;
+  padding: 40px 0px !important;
+}
+
+.references {
+  list-style-type: none !important;
+  vertical-align: baseline !important;
+  line-height: 60pt !important;
+}
+.references .icon {
+  margin-right: 30px;
+  font-size: 40pt !important;
+  vertical-align: sub !important;
+}
+.references li::before {
+  content: "";
+}
+
+ul {
+  list-style: none !important;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-left: 1em; 
+  text-indent: -.7em;
+}
+
+ul li::before {
+  content: "\e96e    ";
+  color: #FFBB00;
+  font-size: 70%;
+
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'IcoMoon-Ultimate' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
