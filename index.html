@@ -242,7 +242,17 @@ class Build : NukeBuild
 						</code></pre>
 					</section>
 
-					<section data-background="images/generation02.gif"><h3>Code-Generation</h3></section>
+					<section data-background="images/generation02.gif">
+						<h3>Code-Generation</h3>
+
+						<aside class="notes">
+							<ul>
+								<li>MSBuild has around 1700 lines of code</li>
+								<li>Not everything is generated, but the vast majority</li>
+								<li>For MSBuild the executable locator is a custom implementation</li>
+							</ul>
+						</aside>
+					</section>
 
           <section>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
@@ -454,6 +464,46 @@ class Build : NukeBuild
 }
             </code></pre>
           </section>
+					<section>
+						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
+{
+  "name": "Properties",
+  "type": "Dictionary&lt;string, object&gt;",
+  "format": "/property:{value}",
+  "itemFormat": "{key}={value}",
+  "disallowedCharacter": ";",
+  "help": "&lt;p&gt;Set or override the specified project-level properties, where name ...",
+  "delegates": [ ... ]
+}
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
+{
+  "name": "Properties",
+  "type": "Dictionary&lt;string, object&gt;",
+  "format": "/property:{value}",
+  "itemFormat": "{key}={value}",
+  "disallowedCharacter": ";",
+  "help": "&lt;p&gt;Set or override the specified project-level properties, where name ...",
+  "delegates": [
+    {
+      "name": "Configuration",
+      "type": "string"
+    },
+    {
+      "name": "RunCodeAnalysis",
+      "type": "bool"
+    },
+    {
+      "name": "NoWarn",
+      "type": "List&lt;int&gt;",
+      "separator": ";"
+    }
+  ]
+}
+						</code></pre>
+					</section>
           <section>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
 using static Nuke.Common.Tools.MSBuildTasks;
