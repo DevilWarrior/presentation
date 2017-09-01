@@ -254,6 +254,48 @@ class Build : NukeBuild
             .DependsOn(Clean)
             .Executes(() =&gt;
             {
+
+
+
+
+            });
+
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+using static Nuke.Common.Tools.MSBuildTasks;
+
+class Build : NukeBuild
+{
+    Target Compile =&gt; _ =&gt; _
+            .DependsOn(Clean)
+            .Executes(() =&gt;
+            {
+                MSBuild();
+
+
+
+            });
+
+    // Output:
+    //   msbuild.exe
+}
+            </code></pre>
+          </section>
+          <section>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+using static Nuke.Common.Tools.MSBuildTasks;
+
+class Build : NukeBuild
+{
+    Target Compile =&gt; _ =&gt; _
+            .DependsOn(Clean)
+            .Executes(() =&gt;
+            {
                 MSBuild(SolutionFile);
 
 
@@ -261,7 +303,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln
+    //   msbuild.exe Solution.sln
 }
             </code></pre>
           </section>
@@ -282,7 +324,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /nologo
+    //   msbuild.exe Solution.sln /nologo
 }
             </code></pre>
           </section>
@@ -303,7 +345,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln
+    //   msbuild.exe Solution.sln
 }
             </code></pre>
           </section>
@@ -324,7 +366,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /nologo
+    //   msbuild.exe Solution.sln /nologo
 }
             </code></pre>
           </section>
@@ -345,7 +387,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /t:Restore;Compile
+    //   msbuild.exe Solution.sln /t:Restore;Compile
 }
             </code></pre>
           </section>
@@ -366,7 +408,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /t:Compile
+    //   msbuild.exe Solution.sln /t:Compile
 }
             </code></pre>
           </section>
@@ -387,7 +429,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /t:Rebuild
+    //   msbuild.exe Solution.sln /t:Rebuild
 }
             </code></pre>
           </section>
@@ -408,7 +450,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /p:configuration=release
+    //   msbuild.exe Solution.sln /p:configuration=release
 }
             </code></pre>
           </section>
@@ -429,7 +471,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /p:configuration=debug
+    //   msbuild.exe Solution.sln /p:configuration=debug
 }
             </code></pre>
           </section>
@@ -450,7 +492,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /p:RunCodeAnalysis=true
+    //   msbuild.exe Solution.sln /p:RunCodeAnalysis=true
 }
             </code></pre>
           </section>
@@ -471,7 +513,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /p:NoWarn="1000;1002"
+    //   msbuild.exe Solution.sln /p:NoWarn="1000;1002"
 }
             </code></pre>
           </section>
@@ -492,7 +534,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /p:NoWarn=1000
+    //   msbuild.exe Solution.sln /p:NoWarn=1000
 }
             </code></pre>
           </section>
@@ -513,7 +555,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /v:diag
+    //   msbuild.exe Solution.sln /v:diag
 }
             </code></pre>
           </section>
@@ -534,7 +576,7 @@ class Build : NukeBuild
             });
 
     // Output:
-    //   msbuild.exe Nuke.sln /p:platform:"Any CPU"
+    //   msbuild.exe Solution.sln /p:platform:"Any CPU"
 }
             </code></pre>
           </section>
@@ -548,14 +590,14 @@ class Build : NukeBuild
             .DependsOn(Clean)
             .Executes(() =&gt;
             {
-                MSBuild(SomeProject, x => x
+                MSBuild(ProjectFile, x => x
                     .SetTargetPlatform(MSBuildTargetPlatform.MSIL));
 
 
             });
 
     // Output:
-    //   msbuild.exe SomeProject.csproj /p:platform:AnyCPU
+    //   msbuild.exe Project.csproj /p:platform:AnyCPU
 }
             </code></pre>
           </section>
