@@ -31,10 +31,7 @@
 			<div class="slides">
 
 				<section>
-					<h2>Privet!</h2>
-				</section>
-
-				<section>
+					<section><h2>Privet!</h2></section>
 
 					<section>
 						<h2>About me</h2>
@@ -42,80 +39,142 @@
 						<aside class="notes">
 							<ul>
 								<li>Work: JetBrains / ReSharper</li>
-								<li>Interests: Music, CleanCode, Testing, Tooling</li>
-								<li>OpenSource: TestLinker, TestFx</li>
+								<li>Interested in: CleanCode, Testing, Tooling</li>
+								<li>Devoted to open-source</li>
 							</ul>
 						</aside>
 					</section>
-
-					<section><img data-src="images/testfx01.png" alt="TestFx Example" /></section>
-					<section><img data-src="images/testfx02.png" alt="TestFx Runner" /></section>
-					<section><img data-src="images/testfx03.png" alt="TestFx Commit History" /></section>
-
 				</section>
 
 				<section>
-					<img class="logo" style="width:700px" data-src="images/logo.png" alt="Logo">
+					<img class="no-border" style="width:700px" data-src="images/logo.png" alt="Logo">
 					<h5 class="subtitle">Build Automation with C# DSL and full IDE support</h5>
 
 					<aside class="notes">
 						<ul>
-							<li>Build automation is the process of automating the creation of a software build and the associated processes including</li>
-							<li>Idea of reproducible builds; eliminate chance of human error</li>
-							<li>Lower risk by having the build encapsulated from the CI server: FAKE, Cake, Rake</li>
-							<li>Run build from everywhere</li>
+							<li>Process of automating the creation of a software build</li>
+							<li>Build steps like Cleaning, Compiling, Packaging</li>
+							<li>Reproducible builds = eliminate chance of human error</li>
 						</ul>
 					</aside>
 				</section>
 
 				<section>
 
+					<section><h2>But we have ...</h2></section>
+
+					<section><h3>Build servers</h3></section>
+
 					<section>
-						<pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
-&nbsp;
-
-
-
-    Target Clean =&gt; _ =&gt; _
-            .Executes(() =&gt; /* actions */));
-
-
-
-
-&nbsp;
-						</code></pre>
+						<img data-src="images/build-servers01.png" alt="Build Step Configuration" />
 
 						<aside class="notes">
 							<ul>
-								<li>Targets as expression-bodied properties returning a delegate type</li>
-								<li>Targets are actual symbols, not strings</li>
-								<li>Doesn't look much different compared to some other scripting approaches</li>
-								<li>Lessons learnt: chance of adoption is decreased when blocking existing tooling</li>
+								<li>Bunch of custom tasks implemented from the build server</li>
+								<li>Forces to rebuild from scratch when switching the server</li>
+								<li>Sometimes manual re-implementation</li>
+								<li>Harder to execute locally</li>
 							</ul>
 						</aside>
 					</section>
 
 					<section>
+						<img data-src="images/build-servers02.png" alt="Build Step Configuration" />
+
+						<aside class="notes">
+							<ul>
+								<li>Invoking a script instead is easy to port</li>
+								<li>Much less coupling to the build server</li>
+								<li>Run build from everywhere</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section>
+						<h3>Build systems</h3>
+
+						<aside class="notes">
+							<ul>
+								<li>Invoked via scripts (ps1, sh, cmd)</li>
+								<li>Always versioned along the repository</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section>
+						<img data-src="images/fake+cake.png" alt="GitHub Star History: FAKE & CAKE" />
+					</section>
+
+					<section>
+						<h4>FAKE</h4>
+						<pre><code class="fsharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+#r @"packages/FAKE/tools/FakeLib.dll"
+
+open Fake
+
+Target "Default" (fun _ ->
+  trace "Hello World from FAKE"
+)
+
+RunTargetOrDefault "Default"
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+								<li>Scripting experience / preprocessor directives</li>
+								<li>Requires people to learn a "bit" of F# (?)</li>
+								<li>Corporate teams: requirement for new employees</li>
+								<li>Open-source projects: skipped participation</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section>
+						<h4>CAKE</h4>
+						<pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+var target = Argument("target", "Default");
+
+Task("Default")
+  .Does(() =>
+  {
+    Information("Hello World from CAKE");
+  });
+
+RunTarget(target);
+						</code></pre>
+
+						<aside class="notes">
+							<ul>
+								<li>Scripting experience / preprocessor directives</li>
+								<li>Requires extensions to be installed</li>
+								<li>Requires how-to's to be read</li>
+								<li>Extended support only in Omnisharp-based IDEs</li>
+							</ul>
+						</aside>
+					</section>
+
+
+					<section>
+						<h4>NUKE</h4>
 						<pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
 class Build : NukeBuild
 {
-    public static int Main () =&gt; Execute&lt;Build&gt;(x =&gt; x.Compile);
+  public static int Main () =&gt; Execute&lt;Build&gt;(x =&gt; x.Default);
 
-    Target Clean =&gt; _ =&gt; _
-            .Executes(() =&gt; /* actions */));
-
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt; /* actions */));
+  Target Default =&gt; _ =&gt; _
+        .Executes(() =&gt;
+        {
+          Logger.Info("Hello World from NUKE");
+        });
 }
 						</code></pre>
 
 						<aside class="notes">
 							<ul>
 								<li>Simple class with base class NukeBuild</li>
-								<li>Main -&gt; Console application</li>
-								<li>Declares default target and returns exit code</li>
-								<li>No typos for target references</li>
+								<li>Resides in a simple console application</li>
+								<li>Main method declares default target and returns exit code</li>
+								<li>Targets as expression-bodied properties returning a delegate type</li>
 							</ul>
 						</aside>
 					</section>
@@ -181,12 +240,127 @@ class Build : NukeBuild
 				</section>
 
 				<section>
+					<section>
+						<h4>Most projects</h4>
+						<img class="no-border" data-src="images/build-chain.png" alt="Common Build Chain" />
+					</section>
+          <section>
+          	<h4>Clean</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  // SourceDirectory => ./src xor ./source
+
+  IEnumerable&lt;string&gt; BuildArtifactDirectories =>
+        GlobDirectories(SourceDirectory, "*/bin", "*/obj");
+
+  Target Clean => _ => _
+        .Executes(() =>
+        {
+          DeleteDirectories(BuildArtifactDirectories);
+          EnsureCleanDirectory(OutputDirectory);
+        });
+}
+            </code></pre>
+          </section>
+          <section>
+          	<h4>Restore</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  // Configuration => IsServerBuild ? "Release" : "Debug";
+
+  Target Restore => _ => _
+        .DependsOn(Clean)
+        .Executes(() =>
+        {
+           MSBuild(SolutionFile, s => s
+               .SetConfiguration(Configuration)
+               .SetTargets("Restore"));
+        });
+}
+            </code></pre>
+          </section>
+          <section>
+          	<h4>Build</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  [GitVersion] readonly GitVersion GitVersion;
+
+  Target Compile => _ => _
+        .DependsOn(Restore)
+        .Executes(() =>
+        {
+          MSBuild(SolutionFile, s => s
+              .SetConfiguration(Configuration)
+              .SetTargets("Build")
+              .SetAssemblyVersion(GitVersion.AssemblySemVer)
+              .SetFileVersion(GitVersion.FullSemVer));
+        });
+}
+            </code></pre>
+          </section>
+          <section>
+          	<h4>Pack</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Pack => _ => _
+        .DependsOn(Build)
+        .Executes(() =>
+        {
+          MSBuild(SolutionFile, s => s
+              .SetConfiguration(Configuration)
+              .SetTargets("Pack")
+              .EnableIncludeSymbols()
+              .SetPackageOutputPath(OutputDirectory)
+              .SetPackageVersion(GitVersion.NuGetVersionV2));
+        });
+}
+            </code></pre>
+          </section>
+          <section>
+          	<h4>Push</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  [Parameter] string ApiKey;
+  [Parameter] string SourceUrl;
+
+  Target Push => _ => _
+        .Requires(() => ApiKey, () => SourceUrl)
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+          GlobFiles(OutputDirectory, "*.nupkg")
+              .ForEach(x => NuGetPush(s => s
+                  .SetTargetPath(x)
+                  .SetSource(SourceUrl)
+                  .SetApiKey(ApiKey)));
+        });
+}
+            </code></pre>
+          </section>
+				</section>
+
+				<section>
 					<img data-src="images/build.jpg" alt="Writing a Build System" />
 
 					<aside class="notes">
 						<ul>
 							<li>"I can write this in a day or two!"</li>
-							<li>What really matters is ...</li>
+							<li>Because what really matters is ...</li>
 						</ul>
 					</aside>
 				</section>
@@ -262,7 +436,7 @@ class Build : NukeBuild
 {
     Target Compile =&gt; _ =&gt; _
             .DependsOn(Clean)
-            .Executes(() =&gt;
+            .<span style="color:red">Executes</span>(() =&gt;
             {
 
 

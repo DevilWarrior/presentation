@@ -1,5 +1,5 @@
-.logo {
-  background:none !important;
+.no-border {
+  background: none !important;
   border: 0 !important;
   box-shadow: 0 0 !important;
 }
