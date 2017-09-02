@@ -26,7 +26,7 @@
 	<body>
 		<div class="reveal">
 
-			<div id="bottom-left"><a href="https://twitter.com/nukebuildnet">Matthias Koch</a></div>
+			<div id="bottom-left">Matthias Koch</div>
 
 			<div class="slides">
 
@@ -38,8 +38,8 @@
 
 						<aside class="notes">
 							<ul>
-								<li>Work: JetBrains / ReSharper</li>
-								<li>Interested in: CleanCode, Testing, Tooling</li>
+								<li>JetBrains / ReSharper</li>
+								<li>Interested in Clean Code, Testing, Tooling</li>
 								<li>Devoted to open-source</li>
 							</ul>
 						</aside>
@@ -234,6 +234,7 @@ class Build : NukeBuild
 						<aside class="notes">
 							<ul>
 								<li>Syntax-highlighting and auto-completion (OOTB)</li>
+								<li>Code Formatting</li>
 								<li>Also make use of xml documentation</li>
 							</ul>
 						</aside>
@@ -272,10 +273,19 @@ class Build : NukeBuild
 
 						<aside class="notes">
 							<ul>
-								<li>As a project: less time spent on rebuilding infrastructure</li>
-								<li>No further knowledge necessary compared to any other framework</li>
-								<li>Code in C# - Build in C#</li>
-								<li>Cultural change in teams: everyone is able to manage the build</li>
+								<li>We spent less time building for non-features</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section>
+						<h3><span style="border-bottom:6px solid #FFBB00">Everyone</span> can manage the build.</h3>
+
+						<aside class="notes">
+							<ul>
+								<li>From a purely technically view</li>
+								<li>No special knowledge required</li>
+								<li>Allows a cultural change</li>
 							</ul>
 						</aside>
 					</section>
@@ -481,7 +491,7 @@ class Build : NukeBuild
 					<aside class="notes">
 						<ul>
 							<li>"I can write this in a day or two!"</li>
-							<li>Because what really matters is ...</li>
+							<li>Because what really matters is a variety of ...</li>
 						</ul>
 					</aside>
 				</section>
@@ -498,10 +508,29 @@ class Build : NukeBuild
 						</aside>
 					</section>
 
-					<section><img data-src="images/msbuild_reference01.png" style="height:80%;width:80%" /></section>
-					<section><img data-src="images/msbuild_reference02.png" style="height:80%;width:80%" /></section>
+
+					<section data-background="images/generation02.gif">
+						<h3>Code-Generation</h3>
+
+						<aside class="notes">
+							<ul>
+								<li></li>
+							</ul>
+						</aside>
+					</section>
+
 
 					<section>
+						<h4>MSBuild CLI Reference</h4>
+						<img data-src="images/msbuild_reference01.png" style="height:80%;width:80%" />
+					</section>
+					<section>
+						<h4>MSBuild CLI Reference</h4>
+						<img data-src="images/msbuild_reference02.png" style="height:80%;width:80%" />
+					</section>
+
+					<section>
+						<h4>Extracted Metadata</h4>
 						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
 {
   "name": "NoLogo",
@@ -528,420 +557,11 @@ class Build : NukeBuild
 						</code></pre>
 					</section>
 
-					<section data-background="images/generation02.gif">
-						<h3>Code-Generation</h3>
-
-						<aside class="notes">
-							<ul>
-								<li>MSBuild has around 1700 lines of code</li>
-								<li>Not everything is generated, but the vast majority</li>
-								<li>For MSBuild the executable locator is a custom implementation</li>
-							</ul>
-						</aside>
-					</section>
-
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .<span style="color:red">Executes</span>(() =&gt;
-            {
-
-
-
-
-            });
-
-
-
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild();
-
-
-
-            });
-
-    // Output:
-    //   msbuild.exe
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile);
-
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetNoLogo(noLogo: true));
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /nologo
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetNoLogo(noLogo: true)
-                    .DisableNoLogo());
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetNoLogo(noLogo: true)
-                    .DisableNoLogo()
-                    .ToggleNoLogo());
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /nologo
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .AddTargets("Restore", "Compile"));
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /t:Restore;Compile
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .AddTargets("Restore", "Compile")
-                    .RemoveTargets("Restore"));
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /t:Compile
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .AddTargets("Restore", "Compile")
-                    .RemoveTargets("Restore")
-                    .SetTargets("Rebuild"));
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /t:Rebuild
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetProperty("configuration", "release"));
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /p:configuration=release
-}
-            </code></pre>
-          </section>
-					<section>
-						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
-{
-  "name": "Properties",
-  "type": "Dictionary&lt;string, object&gt;",
-  "format": "/property:{value}",
-  "itemFormat": "{key}={value}",
-  "disallowedCharacter": ";",
-  "help": "&lt;p&gt;Set or override the specified project-level properties, where name ...",
-  "delegates": [ ... ]
-}
-						</code></pre>
-					</section>
-					<section>
-						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
-{
-  "name": "Properties",
-  "type": "Dictionary&lt;string, object&gt;",
-  "format": "/property:{value}",
-  "itemFormat": "{key}={value}",
-  "disallowedCharacter": ";",
-  "help": "&lt;p&gt;Set or override the specified project-level properties, where name ...",
-  "delegates": [
-    {
-      "name": "Configuration",
-      "type": "string"
-    },
-    {
-      "name": "RunCodeAnalysis",
-      "type": "bool"
-    },
-    {
-      "name": "NoWarn",
-      "type": "List&lt;int&gt;",
-      "separator": ";"
-    }
-  ]
-}
-						</code></pre>
-					</section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetProperty("configuration", "release")
-                    .SetConfiguration("debug"));
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /p:configuration=debug
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .EnableRunCodeAnalysis());
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /p:RunCodeAnalysis=true
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetNoWarns(1000, 1002));
-
-                    
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /p:NoWarn="1000;1002"
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetNoWarns(1000, 1002)
-                    .RemoveNoWarns(1002));
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /p:NoWarn=1000
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetVerbosity(MSBuildVerbosity.Diagnostics));
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /v:diag
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(SolutionFile, x => x
-                    .SetTargetPlatform(MSBuildTargetPlatform.MSIL));
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Solution.sln /p:platform:"Any CPU"
-}
-            </code></pre>
-          </section>
-          <section>
-            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-using static Nuke.Common.Tools.MSBuildTasks;
-
-class Build : NukeBuild
-{
-    Target Compile =&gt; _ =&gt; _
-            .DependsOn(Clean)
-            .Executes(() =&gt;
-            {
-                MSBuild(ProjectFile, x => x
-                    .SetTargetPlatform(MSBuildTargetPlatform.MSIL));
-
-
-            });
-
-    // Output:
-    //   msbuild.exe Project.csproj /p:platform:AnyCPU
-}
-            </code></pre>
-          </section>
 
 
 					<section>
 						<ul>
-							<li class="fragment">Fast, safe, efficient</li>
+							<li class="fragment">Fast, reliable, efficient</li>
 							<li class="fragment">Compatible for new features</li>
 							<li class="fragment">Changes are detected automatically</li>
 							<li class="fragment">Share with other build systems?</li>
@@ -949,7 +569,9 @@ class Build : NukeBuild
 
 						<aside class="notes">
 							<ul>
-								<li>Quoting, Typos, Bugs, No tests required</li>
+								<li>Often takes just a few minutes</li>
+								<li>Reduces bugs, quoting errors, and typos</li>
+								<li>Doesn't require tests</li>
 							</ul>
 						</aside>
 					</section>
