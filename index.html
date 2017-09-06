@@ -118,9 +118,11 @@
 						</aside>
 					</section>
 
-					<section>
-						<img data-src="images/fake-cake.png" alt="GitHub Star History: FAKE & CAKE" />
-					</section>
+          <section>
+            <img class="no-border" style="height:300px; margin-right:100px" data-src="images/logo-fake.png" alt="FAKE Logo" />
+            <img class="no-border" style="height:300px" data-src="images/logo-cake.png" alt="CAKE Logo" />
+          </section>
+					<section><img data-src="images/stars-fake-cake.png" alt="GitHub Star History: FAKE & CAKE" /></section>
 
 					<section>
 						<h4>FAKE</h4>
@@ -273,7 +275,7 @@ class Build : NukeBuild
 						</aside>
 					</section>
 
-					<section id="environments">
+					<section class="image-row">
 						<img class="no-border" data-src="images/visualstudio.png" alt="VisualStudio" />
 						<img class="no-border" data-src="images/rider.png" alt="JetBrains Rider" />
 						<img class="no-border" data-src="images/omnisharp.png" alt="OmniSharp" />
@@ -506,8 +508,8 @@ class Build : NukeBuild
 				<section>
           <section><img data-src="images/build.jpg" alt="Writing a Build System" /></section>
 					<section>
-            <img data-src="images/cake.png" alt="Cake on GitHub" />
-            <img data-src="images/fake.png" alt="Fake on GitHub" />
+            <img data-src="images/repo-cake.png" alt="Cake on GitHub" />
+            <img data-src="images/repo-fake.png" alt="Fake on GitHub" />
           </section>
 				</section>
 
@@ -708,6 +710,7 @@ MSBuild(x => x
 
         <section>
           <section><h2>Demo</h2></section>
+          <section><h3>Build Setup</h3></section>
           <section><h3>CLI Experience</h3></section>
           <section><h3>Default Settings</h3></section>
           <section><h3>Path Construction</h3></section>
