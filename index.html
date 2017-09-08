@@ -57,7 +57,7 @@
 
           <section>
             <img class="no-border" data-src="images/gradle.png" alt="Build Automation" />
-            <span style="font-size:80%">&copy;&nbsp;<a href="https://gradle.org/">https://gradle.org</a></span>
+            <span style="font-size:80%">Build Automation &copy; <a href="https://gradle.org/">https://gradle.org</a></span>
 
             <aside class="notes">
               <ul>
@@ -68,89 +68,75 @@
             </aside>
           </section>
 
-          <section>
-            <img class="no-border" style="width:700px" data-src="images/logo.png" alt="Logo">
-            <h5 class="subtitle">Build Automation with C# DSL and full IDE support</h5>
+          <section data-background="#dddddd">
+            <img class="no-border" data-src="images/ecosystem01.png" alt="Ecosystem of Build-Automation" />
+
+            <aside class="notes">
+              <ul>
+                <li>For some: ecosystem of build-automation looks like this</li>
+                <li>Tools that help us to restore dependencies, compile, pack, test, deploy our code</li>
+                <li>Build servers that will invoke the actual work</li>
+              </ul>
+            </aside>
           </section>
 
-				</section>
+          <section>
+            <img data-src="images/build-servers01.png" alt="Build Step Configuration" />
 
+            <aside class="notes">
+              <ul>
+                <li>Bunch of custom tasks implemented from the build server</li>
+                <li>Forces to rebuild from scratch when switching the server</li>
+                <li>Sometimes manual re-implementation</li>
+                <li>Harder to execute locally</li>
+              </ul>
+            </aside>
+          </section>
 
-				<section>
-
-					<section><h2>But we have ...</h2></section>
-
-					<section><h3>Build servers</h3></section>
-
-					<section>
-						<img data-src="images/build-servers01.png" alt="Build Step Configuration" />
-
-						<aside class="notes">
-							<ul>
-								<li>Bunch of custom tasks implemented from the build server</li>
-								<li>Forces to rebuild from scratch when switching the server</li>
-								<li>Sometimes manual re-implementation</li>
-								<li>Harder to execute locally</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section>
-						<img data-src="images/build-servers02.png" alt="Build Step Configuration" />
-
-						<aside class="notes">
-							<ul>
-								<li>Invoking a script instead is easy to port</li>
-								<li>Much less coupling to the build server</li>
-								<li>Run build from everywhere</li>
-							</ul>
-						</aside>
-					</section>
-
-					<section>
-						<h3>Build systems</h3>
-
-						<aside class="notes">
-							<ul>
-								<li>Invoked via scripts (ps1, sh, cmd)</li>
-								<li>Always versioned along the repository</li>
-							</ul>
-						</aside>
-					</section>
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem02.png" alt="Ecosystem of Build-Automation" /></section>
 
           <section>
-            <img class="no-border" style="height:300px; margin-right:100px" data-src="images/logo-fake.png" alt="FAKE Logo" />
-            <img class="no-border" style="height:300px" data-src="images/logo-cake.png" alt="CAKE Logo" />
+            <img data-src="images/build-servers02.png" alt="Build Step Configuration" />
+
+            <aside class="notes">
+              <ul>
+                <li>Invoking a script instead is easy to port</li>
+                <li>Much less coupling to the build server</li>
+                <li>Run build from everywhere</li>
+              </ul>
+            </aside>
           </section>
-					<section><img data-src="images/stars-fake-cake.png" alt="GitHub Star History: FAKE & CAKE" /></section>
 
-					<section>
-						<h4>FAKE</h4>
-						<pre><code class="fsharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
-#r @"packages/FAKE/tools/FakeLib.dll"
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem02.png" alt="Ecosystem of Build-Automation" /></section>
 
-open Fake
+          <section>
+            <h4>XML-Based</h4>
+            <ul>
+              <li class="fragment">Very Verbose</li>
+              <li class="fragment">Difficult to extend</li>
+            </ul>
+          </section>
 
-Target "Default" (fun _ ->
-  trace "Hello World from FAKE"
-)
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem02.png" alt="Ecosystem of Build-Automation" /></section>
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem03.png" alt="Ecosystem of Build-Automation" /></section>
 
-RunTargetOrDefault "Default"
-						</code></pre>
+          <section>
+            <h4>Other languages</h4>
+            <ul>
+              <li class="fragment">Learning curve</li>
+              <li class="fragment">Documentation lookups</li>
+              <li class="fragment">Bootstrapping?</li>
+              <li class="fragment">Extensions?</li>
+              <li class="fragment">Run &amp; Fail?</li>
+            </ul>
+          </section>
 
-						<aside class="notes">
-							<ul>
-								<li>Scripting experience / preprocessor directives</li>
-								<li>Requires people to learn a "bit" of F# (?)</li>
-								<li>Corporate teams: requirement for new employees</li>
-								<li>Open-source projects: skipped participation</li>
-							</ul>
-						</aside>
-					</section>
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem03.png" alt="Ecosystem of Build-Automation" /></section>
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem04.png" alt="Ecosystem of Build-Automation" /></section>
 
-					<section>
-						<h4>CAKE</h4>
-						<pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+          <section>
+            <h4>CAKE</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
 var target = Argument("target", "Default");
 
 Task("Default")
@@ -160,19 +146,45 @@ Task("Default")
   });
 
 RunTarget(target);
-						</code></pre>
+            </code></pre>
 
-						<aside class="notes">
-							<ul>
-								<li>Scripting experience / preprocessor directives</li>
-								<li>Requires extensions to be installed</li>
-								<li>Requires how-to's to be read</li>
-								<li>Extended support only in Omnisharp-based IDEs</li>
-							</ul>
-						</aside>
-					</section>
+            <aside class="notes">
+              <ul>
+                <li>Superset of C# / Scripting experience</li>
+                <li>Requires extensions to be installed</li>
+                <li>Requires how-to's to be read</li>
+                <li>Extended support only in Omnisharp-based IDEs</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Cake</h4>
+            <ul>
+              <li class="fragment">Superset of C#</li>
+              <li class="fragment">Scripting experience</li>
+              <li class="fragment">Documentation lookups</li>
+              <li class="fragment">Diverse IDE experience</li>
+              <li class="fragment">Manual implementation</li>
+            </ul>
+          </section>
+
+
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem04.png" alt="Ecosystem of Build-Automation" /></section>
+          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem05.png" alt="Ecosystem of Build-Automation" /></section>
 
 				</section>
+
+
+
+
+
+
+
+        <section>
+          <img class="no-border" style="width:700px" data-src="images/logo.png" alt="Logo">
+          <h5 class="subtitle">Build Automation with C# DSL and full IDE support</h5>
+        </section>
 
 
 
@@ -222,9 +234,73 @@ RunTarget(target);
 
 					<section><h2>A simple C# Project</h2></section>
 
-					<section>
-						<h4>NUKE</h4>
-						<pre><code class="csharp line-numbers" data-trim style="font-size: 24px; line-height: 28px;max-height: 100%">
+          <section>
+            <h4>NUKE</h4>
+            <pre><code class="csharp" data-trim style="font-size: 24px; line-height: 28px;max-height: 100%">
+class Build : NukeBuild
+{
+
+
+
+
+
+
+
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>NUKE</h4>
+            <pre><code class="csharp" data-trim style="font-size: 24px; line-height: 28px;max-height: 100%">
+class Build : NukeBuild
+{
+  public static int Main () =&gt; Execute&lt;Build&gt;(x =&gt; x.Default);
+
+
+
+
+
+
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>NUKE</h4>
+            <pre><code class="csharp" data-trim style="font-size: 24px; line-height: 28px;max-height: 100%">
+class Build : NukeBuild
+{
+  public static int Main () =&gt; Execute&lt;Build&gt;(x =&gt; x.Default);
+
+  Target Default =&gt;
+
+
+
+  
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>NUKE</h4>
+            <pre><code class="csharp" data-trim style="font-size: 24px; line-height: 28px;max-height: 100%">
+class Build : NukeBuild
+{
+  public static int Main () =&gt; Execute&lt;Build&gt;(x =&gt; x.Default);
+
+  Target Default =&gt; _ =&gt; _
+
+
+
+
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>NUKE</h4>
+            <pre><code class="csharp" data-trim style="font-size: 24px; line-height: 28px;max-height: 100%">
 class Build : NukeBuild
 {
   public static int Main () =&gt; Execute&lt;Build&gt;(x =&gt; x.Default);
@@ -235,25 +311,15 @@ class Build : NukeBuild
           Logger.Info("Hello World from NUKE");
         });
 }
-						</code></pre>
-
-						<aside class="notes">
-							<ul>
-								<li>Simple class with base class NukeBuild</li>
-								<li>Resides in a simple console application</li>
-								<li>Main method declares default target and returns exit code</li>
-								<li>Targets as expression-bodied properties returning a delegate type</li>
-							</ul>
-						</aside>
-					</section>
+            </code></pre>
+          </section>
 
 					<section>
 						<img data-src="images/completion.png" alt="Auto-completion" />
 						<aside class="notes">
 							<ul>
-								<li>Syntax-highlighting and auto-completion (OOTB)</li>
+								<li>Compiler-checks and auto-completion (OOTB)</li>
 								<li>Code Formatting</li>
-								<li>Also make use of xml documentation</li>
 							</ul>
 						</aside>
 					</section>
@@ -283,17 +349,11 @@ class Build : NukeBuild
 
 					<section>
 						<ul>
-							<li class="fragment">No scripting experience</li>
-							<li class="fragment">No preprocessing</li>
-							<li class="fragment">No extensions</li>
-							<li class="fragment">No how-to's</li>
+              <li class="fragment">Simple C# project</li>
+              <li class="fragment">MSBuild / dotnet</li>
+              <li class="fragment">All features OOTB</li>
+							<li class="fragment">Usual learning curve</li>
 						</ul>
-
-						<aside class="notes">
-							<ul>
-								<li>We spent less time building for non-features</li>
-							</ul>
-						</aside>
 					</section>
 
 					<section>
@@ -301,9 +361,8 @@ class Build : NukeBuild
 
 						<aside class="notes">
 							<ul>
-								<li>From a purely technically view</li>
-								<li>No special knowledge required</li>
-								<li>Allows a cultural change</li>
+								<li>Cultural change</li>
+								<li>No longer this "single person"</li>
 							</ul>
 						</aside>
 					</section>
@@ -360,35 +419,189 @@ class Build : NukeBuild
 
 
           <section>
-          	<h4>Clean</h4>
+            <h4>Clean</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-// ...
+&nbsp;
 
 class Build : NukeBuild
 {
-  // SourceDirectory => ./src xor ./source
-
-  IEnumerable&lt;string&gt; BuildArtifactDirectories =>
-        GlobDirectories(SourceDirectory, "*/bin", "*/obj");
-
   Target Clean => _ => _
         .Executes(() =>
         {
-          DeleteDirectories(BuildArtifactDirectories);
-          EnsureCleanDirectory(OutputDirectory);
+
+
         });
+
+
+
+
+
+        
 }
             </code></pre>
           </section>
           <section>
-          	<h4>Restore</h4>
+            <h4>Clean</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+using static Nuke.Core.IO.FileSystemTasks;
+
+class Build : NukeBuild
+{
+  Target Clean => _ => _
+        .Executes(() =>
+        {
+          EnsureCleanDirectory(OutputDirectory);
+          DeleteDirectories(BuildArtifactDirectories);
+        });
+
+
+
+
+
+        
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Clean</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+using static Nuke.Core.IO.FileSystemTasks;
+
+class Build : NukeBuild
+{
+  Target Clean => _ => _
+        .Executes(() =>
+        {
+          EnsureCleanDirectory(OutputDirectory);
+          DeleteDirectories(BuildArtifactDirectories);
+        });
+
+  // OutputDirectory => "./output"
+
+
+
+        
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Clean</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+using static Nuke.Core.IO.FileSystemTasks;
+
+class Build : NukeBuild
+{
+  Target Clean => _ => _
+        .Executes(() =>
+        {
+          EnsureCleanDirectory(OutputDirectory);
+          DeleteDirectories(BuildArtifactDirectories);
+        });
+
+  // OutputDirectory => "./output"
+  // SourceDirectory => "./src" or "./source"
+
+
+        
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Clean</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+using static Nuke.Core.IO.FileSystemTasks;
+
+class Build : NukeBuild
+{
+  Target Clean => _ => _
+        .Executes(() =>
+        {
+          EnsureCleanDirectory(OutputDirectory);
+          DeleteDirectories(BuildArtifactDirectories);
+        });
+
+  // OutputDirectory => "./output"
+  // SourceDirectory => "./src" or "./source"
+
+  IEnumerable&lt;string&gt; BuildArtifactDirectories =>
+        GlobDirectories(SourceDirectory, "*/bin", "*/obj");
+}
+            </code></pre>
+          </section>
+
+
+
+
+          <section>
+            <h4>Restore</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
 // ...
 
 class Build : NukeBuild
 {
-  // Configuration => IsServerBuild ? "Release" : "Debug";
+  Target Restore => _ => _
+        .DependsOn(Clean)
+        .Executes(() =>
+        {
 
+
+
+        });
+
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Restore</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Restore => _ => _
+        .DependsOn(Clean)
+        .Executes(() =>
+        {
+          MSBuild("Solution.sln", s => s
+              .SetConfiguration("Debug")
+              .SetTargets("Restore"));
+        });
+
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Restore</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Restore => _ => _
+        .DependsOn(Clean)
+        .Executes(() =>
+        {
+          MSBuild("Solution.sln", s => s
+              .SetConfiguration("Debug")
+              .SetTargets("Restore"));
+        });
+
+  // Configuration => IsServerBuild ? "Release" : "Debug";
+  // SolutionFile => /* Read from .nuke file */
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Restore</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
   Target Restore => _ => _
         .DependsOn(Clean)
         .Executes(() =>
@@ -397,18 +610,68 @@ class Build : NukeBuild
               .SetConfiguration(Configuration)
               .SetTargets("Restore"));
         });
+
+  // Configuration => IsServerBuild ? "Release" : "Debug";
+  // SolutionFile => /* Read from .nuke file */
 }
             </code></pre>
           </section>
+
+
+
+
+
           <section>
-          	<h4>Build</h4>
+            <h4>Compile</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
 // ...
 
 class Build : NukeBuild
 {
-  [GitVersion] readonly GitVersion GitVersion;
+  Target Compile => _ => _
+        .DependsOn(Restore)
+        .Executes(() =>
+        {
+          MSBuild(SolutionFile, s => s
+              .SetConfiguration(Configuration)
+              .SetTargets("Build");
 
+
+        });
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Compile</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Compile => _ => _
+        .DependsOn(Restore)
+        .Executes(() =>
+        {
+          MSBuild(SolutionFile, s => s
+              .SetConfiguration(Configuration)
+              .SetTargets("Build");
+              
+
+        });
+
+  [GitVersion] readonly GitVersion GitVersion;
+}
+            </code></pre>
+          </section>
+          <section>
+          	<h4>Compile</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
   Target Compile => _ => _
         .DependsOn(Restore)
         .Executes(() =>
@@ -419,18 +682,24 @@ class Build : NukeBuild
               .SetAssemblyVersion(GitVersion.AssemblySemVer)
               .SetFileVersion(GitVersion.FullSemVer));
         });
+
+  [GitVersion] readonly GitVersion GitVersion;
 }
             </code></pre>
           </section>
+
+
+
+
+
+
           <section>
-          	<h4>Pack</h4>
+            <h4>Pack</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
 // ...
 
 class Build : NukeBuild
 {
-  string PackageDirectory => OutputDirectory / "packages";
-
   Target Pack => _ => _
         .DependsOn(Build)
         .Executes(() =>
@@ -442,6 +711,156 @@ class Build : NukeBuild
               .SetPackageOutputPath(PackageDirectory)
               .SetPackageVersion(GitVersion.NuGetVersionV2));
         });
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Pack</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Pack => _ => _
+        .DependsOn(Build)
+        .Executes(() =>
+        {
+          MSBuild(SolutionFile, s => s
+              .SetConfiguration(Configuration)
+              .SetTargets("Pack")
+              .EnableIncludeSymbols()
+              .SetPackageOutputPath(PackageDirectory)
+              .SetPackageVersion(GitVersion.NuGetVersionV2));
+        });
+
+  string PackageDirectory => OutputDirectory / "packages";
+}
+            </code></pre>
+          </section>
+
+
+
+
+
+          <section>
+            <h4>Push</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Push => _ => _
+
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+          GlobFiles(PackageDirectory, "*.nupkg")
+              .ForEach(x => NuGetPush(s => s
+                  .SetTargetPath(x)
+                  .SetSource(/* ??? */)
+                  .SetApiKey(/* ??? */)));
+        });
+        
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Push</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Push => _ => _
+
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+          GlobFiles(PackageDirectory, "*.nupkg")
+              .ForEach(x => NuGetPush(s => s
+                  .SetTargetPath(x)
+                  .SetSource(Variable("Source"))
+                  .SetApiKey(Argument("ApiKey"))));
+        });
+        
+
+
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Push</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Push => _ => _
+
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+          GlobFiles(PackageDirectory, "*.nupkg")
+              .ForEach(x => NuGetPush(s => s
+                  .SetTargetPath(x)
+                  .SetSource(Variable("Source"))
+                  .SetApiKey(Argument("ApiKey"))));
+        });
+
+  [Parameter] string ApiKey;
+  [Parameter] string SourceUrl;
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Push</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Push => _ => _
+
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+          GlobFiles(PackageDirectory, "*.nupkg")
+              .ForEach(x => NuGetPush(s => s
+                  .SetTargetPath(x)
+                  .SetSource(SourceUrl)
+                  .SetApiKey(ApiKey)));
+        });
+
+  [Parameter] string ApiKey;
+  [Parameter] string SourceUrl;
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Push</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
+// ...
+
+class Build : NukeBuild
+{
+  Target Push => _ => _
+        .Requires(() => ApiKey != null && SourceUrl != null)
+        .DependsOn(Pack)
+        .Executes(() =>
+        {
+          GlobFiles(PackageDirectory, "*.nupkg")
+              .ForEach(x => NuGetPush(s => s
+                  .SetTargetPath(x)
+                  .SetSource(SourceUrl)
+                  .SetApiKey(ApiKey)));
+        });
+
+  [Parameter] string ApiKey;
+  [Parameter] string SourceUrl;
 }
             </code></pre>
           </section>
@@ -452,9 +871,6 @@ class Build : NukeBuild
 
 class Build : NukeBuild
 {
-  [Parameter] string ApiKey;
-  [Parameter] string SourceUrl;
-
   Target Push => _ => _
         .Requires(() => ApiKey, () => SourceUrl)
         .DependsOn(Pack)
@@ -466,9 +882,14 @@ class Build : NukeBuild
                   .SetSource(SourceUrl)
                   .SetApiKey(ApiKey)));
         });
+
+  [Parameter] string ApiKey;
+  [Parameter] string SourceUrl;
 }
             </code></pre>
           </section>
+
+
 				</section>
 
 
@@ -511,27 +932,28 @@ class Build : NukeBuild
             <img data-src="images/repo-cake.png" alt="Cake on GitHub" />
             <img data-src="images/repo-fake.png" alt="Fake on GitHub" />
           </section>
+
+          <section data-background="#dddddd">
+            <h3>Tools</h3>
+            <img class="no-border" data-src="images/tools.png" alt="Tools" />
+            <p class="fragment">... and many more!</p>
+          </section>
+
 				</section>
+
+
+
 
 				<section>
 
-					<section data-background="images/generation02.gif">
-						<h2>Code-Generation</h2>
-
-						<aside class="notes">
-							<ul>
-								<li></li>
-							</ul>
-						</aside>
-					</section>
-
-
+					<section data-background="images/generation02.gif"><h2 class="fragment">Code-Generation</h2></section>
+          <section><h3>MSBuild</h3></section>
 					<section>
 						<h4>MSBuild CLI Reference</h4>
 						<img data-src="images/msbuild_reference01.png" style="height:80%;width:80%" />
 					</section>
 					<section>
-						<h4>MSBuild CLI Reference</h4>
+						<h4>Important Parts</h4>
 						<img data-src="images/msbuild_reference02.png" style="height:80%;width:80%" />
 					</section>
 
@@ -646,12 +1068,13 @@ MSBuild(x => x
           </section>
 
           <section>
+            <h3>Customizations</h3>
             <ul>
-              <li class="fragment">Tool path resolution</li>
-              <li class="fragment">Built-in and custom assertions</li>
-              <li class="fragment">Custom formatting</li>
-              <li class="fragment">Custom invocation</li>
-              <li class="fragment">Return value transformation</li>
+              <li class="fragment">Tool resolution</li>
+              <li class="fragment">Assertions</li>
+              <li class="fragment">Formatting</li>
+              <li class="fragment">Invocation</li>
+              <li class="fragment">Output transformation</li>
             </ul>
           </section>
 
