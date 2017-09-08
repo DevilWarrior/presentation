@@ -19,10 +19,12 @@
 }
 #bottom-left {
   position:absolute;
-  bottom:12px;
+  bottom:8px;
   left:10px;
   font-size:55%;
-  z-index:1
+  z-index:1;
+  background-color:rgba(0, 0, 0, 0.4) !important;
+  padding:5px;
 }
 a:hover {
   color: #FFBB00 !important;
