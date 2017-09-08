@@ -182,8 +182,8 @@ RunTarget(target);
 
 
         <section>
-          <img class="no-border" style="width:700px" data-src="images/logo.png" alt="Logo">
-          <h5 class="subtitle">Build Automation with C# DSL and full IDE support</h5>
+          <img class="no-border" style="width:620px" data-src="images/logo.png" alt="Logo">
+          <h5 class="subtitle">Build Automation for C# Developers</h5>
         </section>
 
 
@@ -412,12 +412,8 @@ class Build : NukeBuild
 				<section>
 					<section><h2>Real world example</h2></section>
 
-					<section>
-						<h3>Fictional project</h3>
-						<img class="no-border" data-src="images/build-chain.svg" alt="Common Build Chain" />
-					</section>
-
-
+          <section><img class="no-border" data-src="images/simple-project.svg" alt="Common Build Chain" /></section>
+					<section><img class="no-border" data-src="images/simple-project01.svg" alt="Common Build Chain" /></section>
           <section>
             <h4>Clean</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
@@ -532,6 +528,7 @@ class Build : NukeBuild
 
 
 
+          <section><img class="no-border" data-src="images/simple-project02.svg" alt="Common Build Chain" /></section>
           <section>
             <h4>Restore</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
@@ -621,6 +618,7 @@ class Build : NukeBuild
 
 
 
+          <section><img class="no-border" data-src="images/simple-project03.svg" alt="Common Build Chain" /></section>
           <section>
             <h4>Compile</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
@@ -693,6 +691,7 @@ class Build : NukeBuild
 
 
 
+          <section><img class="no-border" data-src="images/simple-project04.svg" alt="Common Build Chain" /></section>
           <section>
             <h4>Pack</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
@@ -744,6 +743,7 @@ class Build : NukeBuild
 
 
 
+          <section><img class="no-border" data-src="images/simple-project05.svg" alt="Common Build Chain" /></section>
           <section>
             <h4>Push</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
@@ -947,18 +947,24 @@ class Build : NukeBuild
 				<section>
 
 					<section data-background="images/generation02.gif"><h2 class="fragment">Code-Generation</h2></section>
+
+          <section><img class="no-border" data-src="images/code-generation.svg" alt="Code-Generation" /></section>
+
           <section><h3>MSBuild</h3></section>
+          <section><img class="no-border" data-src="images/code-generation01.svg" alt="Code-Generation" /></section>
 					<section>
-						<h4>MSBuild CLI Reference</h4>
+						<h3>Reference</h3>
 						<img data-src="images/msbuild_reference01.png" style="height:80%;width:80%" />
 					</section>
 					<section>
-						<h4>Important Parts</h4>
+						<h3>Reference</h3>
 						<img data-src="images/msbuild_reference02.png" style="height:80%;width:80%" />
 					</section>
 
+          <section><img class="no-border" data-src="images/code-generation02.svg" alt="Code-Generation" /></section>
+
 					<section>
-						<h4>Extracted Metadata</h4>
+						<h3>Metadata</h3>
 						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
 {
   "name": "NoLogo",
@@ -984,6 +990,19 @@ class Build : NukeBuild
 }
 						</code></pre>
 					</section>
+
+          <section><img class="no-border" data-src="images/code-generation03.svg" alt="Code-Generation" /></section>
+
+          <section>
+            <h3>Generated Code</h3>
+            <ul>
+              <li class="fragment">Builder pattern for arguments</li>
+              <li class="fragment">Assertions</li>
+              <li class="fragment">XML documentation</li>
+              <li class="fragment">Tool resolution</li>
+              <li class="fragment">Invocation</li>
+            </ul>
+          </section>
 
           <section>
             <h4>Strings &amp; Numbers</h4>
@@ -1056,10 +1075,10 @@ MSBuild(x => x
           </section>
 
           <section>
-            <h4>Delegates</h4>
+            <h4>Typed Dictionary Access</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
 MSBuild(x => x
-  .SetPackageId("GhostBusters")
+  .SetConfiguration("RELEASE")
   .SetFileVersion("1.3.3.7")
   .SetNoWarns(1000, 1002) // /p:NoWarns=\"1000;1002\"
   .DisableWarningsAsErrors()
@@ -1067,19 +1086,10 @@ MSBuild(x => x
             </code></pre>
           </section>
 
-          <section>
-            <h3>Customizations</h3>
-            <ul>
-              <li class="fragment">Tool resolution</li>
-              <li class="fragment">Assertions</li>
-              <li class="fragment">Formatting</li>
-              <li class="fragment">Invocation</li>
-              <li class="fragment">Output transformation</li>
-            </ul>
-          </section>
-
 					<section>
+            <h3>Advantages</h3>
 						<ul>
+              <li class="fragment">Consistency</li>
 							<li class="fragment">Fast, reliable, efficient</li>
 							<li class="fragment">Friendly for new features</li>
 							<li class="fragment">Changes are detected automatically</li>
@@ -1093,6 +1103,17 @@ MSBuild(x => x
 							</ul>
 						</aside>
 					</section>
+
+          <section>
+            <h3>Today</h3>
+            <ul>
+              <li>19 CLI tools</li>
+              <li>4.000 lines of metadata</li>
+              <li>20.000 lines of generated code</li>
+              <li>100 lines of custom code</li>
+            </ul>
+          </section>
+
 
 				</section>
 
