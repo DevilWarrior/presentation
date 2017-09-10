@@ -42,28 +42,27 @@
 
 						<aside class="notes">
 							<ul>
-								<li>JetBrains / ReSharper</li>
-								<li>Interested in Clean Code, Testing, Tooling</li>
-								<li>Devoted to open-source</li>
+                <li>Munich, Germany</li>
+								<li>JetBrains, ReSharper</li>
+								<li>Clean Code, Testing, Tooling</li>
 							</ul>
 						</aside>
 					</section>
 				</section>
 
 				<section>
-
-          <section><img class="no-border" style="width:400px" data-src="images/coffee.jpg" alt="Turn Coffee Into Code"></section>
+          <section><h2>Build Automation</h2></section>
           <section><img class="no-border" data-src="images/profit.jpg" alt="Way to Success"></section>
 
           <section>
             <img class="no-border" data-src="images/gradle.png" alt="Build Automation" />
-            <span style="font-size:80%">Build Automation &copy; <a href="https://gradle.org/">https://gradle.org</a></span>
+            <span style="font-size:80%">Source:&nbsp;<a href="https://gradle.org/">https://gradle.org</a></span>
 
             <aside class="notes">
               <ul>
                 <li>Process of automating the creation of a software build</li>
                 <li>Build steps like Cleaning, Compiling, Packaging</li>
-                <li>Reproducible builds = eliminate chance of human error</li>
+                <li>Reproducible => eliminate chance of human error</li>
               </ul>
             </aside>
           </section>
@@ -93,7 +92,15 @@
             </aside>
           </section>
 
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem02.png" alt="Ecosystem of Build-Automation" /></section>
+          <section>
+            <h3>Build System</h3>
+            <ul>
+              <li>Tool orchestration</li>
+              <li>Build everywhere</li>
+              <li>Better feedback cycle</li>
+              <li>Minimal coupling</li>
+            </ul>
+          </section>
 
           <section>
             <img data-src="images/build-servers02.png" alt="Build Step Configuration" />
@@ -112,8 +119,8 @@
           <section>
             <h4>XML-Based</h4>
             <ul>
-              <li class="fragment">Very Verbose</li>
-              <li class="fragment">Difficult to extend</li>
+              <li>Very verbose</li>
+              <li>Difficult to extend</li>
             </ul>
           </section>
 
@@ -121,13 +128,12 @@
           <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem03.png" alt="Ecosystem of Build-Automation" /></section>
 
           <section>
-            <h4>Other languages</h4>
+            <h4>Non-CSharp</h4>
             <ul>
-              <li class="fragment">Bootstrapping</li>
-              <li class="fragment">Learning curve</li>
-              <li class="fragment">Documentation lookups</li>
-              <li class="fragment">Extensions</li>
-              <li class="fragment">Trial &amp; Error</li>
+              <li>Bootstrapping</li>
+              <li>Learning curve</li>
+              <li>Trial &amp; Error</li>
+              <li>Extensions</li>
             </ul>
           </section>
 
@@ -161,11 +167,11 @@ RunTarget(target);
           <section>
             <h4>Cake</h4>
             <ul>
-              <li class="fragment">Superset of C#</li>
-              <li class="fragment">Scripting experience</li>
-              <li class="fragment">Documentation lookups</li>
-              <li class="fragment">Diverse IDE experience</li>
-              <li class="fragment">Manual implementation</li>
+              <li>Superset of C#</li>
+              <li>Scripting experience</li>
+              <li>Documentation lookups</li>
+              <li>Mixed IDE experience</li>
+              <li>Manual implementation</li>
             </ul>
           </section>
 
@@ -348,11 +354,12 @@ class Build : NukeBuild
 					</section>
 
 					<section>
+            <h3>Advantages</h3>
 						<ul>
-              <li class="fragment">Simple C# project</li>
-              <li class="fragment">MSBuild / dotnet</li>
-              <li class="fragment">All features OOTB</li>
-							<li class="fragment">Usual learning curve</li>
+              <li>Simple C# project</li>
+              <li>All features OOTB</li>
+              <li>MSBuild / dotnet CLI</li>
+							<li>Usual learning curve</li>
 						</ul>
 					</section>
 
@@ -1016,18 +1023,18 @@ class Build : NukeBuild
           <section>
             <h3>Generated Code</h3>
             <ul>
-              <li class="fragment">Builder pattern for arguments</li>
-              <li class="fragment">Assertions</li>
-              <li class="fragment">XML documentation</li>
-              <li class="fragment">Tool resolution</li>
-              <li class="fragment">Invocation</li>
+              <li>Argument configuration</li>
+              <li>Assertions</li>
+              <li>Tool resolution</li>
+              <li>Invocation</li>
+              <li>XML documentation</li>
             </ul>
           </section>
 
           <section>
             <h4>Strings &amp; Numbers</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-MSBuild(x => x
+MSBuild(x => x // settings configurator
   // string
   .SetConfiguration("release")
   .ResetConfiguration()
@@ -1043,7 +1050,7 @@ MSBuild(x => x
           <section>
             <h4>Booleans</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-MSBuild(x => x
+MSBuild(x => x // settings configurator
   // common
   .SetNodeReuse(true)
   .ResetNodeReuse()
@@ -1057,50 +1064,51 @@ MSBuild(x => x
           <section>
             <h4>Lists</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-MSBuild(x => x
+MSBuild(x => x // settings configurator
   // common
   .SetTargets("Clean", "Build")
+  .ClearTargets()
   // additional
   .AddTargets("Pack")
-  .RemoveTargets("Build")
-  .ClearTargets());
+  .RemoveTargets("Build"));
             </code></pre>
           </section>
 
           <section>
             <h4>Lookups</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-Xunit(x => x
+Xunit(x => x // settings configurator
   // common
   .SetTraits("Category", "Unit", "Web")
+  .ClearTraits()
   // additional
   .AddTraits("Performance", "Long-running")
-  .RemoveTraits("Category", "Web")
-  .ClearTraits());
+  .RemoveTraits("Category", "Web"));
             </code></pre>
           </section>
 
           <section>
             <h4>Dictionary</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-MSBuild(x => x
+MSBuild(x => x // settings configurator
   // common
   .SetProperties(dictionary)
+  .ClearProperty()
   // additional
-  .AddProperty("RunCodeAnalysis", true)
+  .AddProperty("Configuration", "Release")
   .SetProperty("RunCodeAnalysis", false)
-  .RemoveProperty("OutDir")
-  .ClearProperty());
+  .RemoveProperty("OutDir"));
             </code></pre>
           </section>
 
           <section>
             <h4>Typed Dictionary Access</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 22px; line-height: 26px;max-height: 100%">
-MSBuild(x => x
-  .SetConfiguration("RELEASE")
+MSBuild(x => x // settings configurator
+  // /p:&lt;name&gt;=&lt;value&gt;
+  .SetConfiguration("Release")
   .SetFileVersion("1.3.3.7")
-  .SetNoWarns(1000, 1002) // /p:NoWarns=\"1000;1002\"
+  .SetNoWarns(1000, 1002)
   .DisableWarningsAsErrors()
   .EnableRunCodeAnalysis());
             </code></pre>
@@ -1109,10 +1117,10 @@ MSBuild(x => x
 					<section>
             <h3>Advantages</h3>
 						<ul>
-              <li class="fragment">Consistency</li>
-							<li class="fragment">Fast, reliable, efficient</li>
-							<li class="fragment">Friendly for new features</li>
-							<li class="fragment">Changes are detected automatically</li>
+              <li>Consistency</li>
+							<li>Fast, reliable, efficient</li>
+							<li>Friendly for new features</li>
+							<li>Changes are detected automatically</li>
 						</ul>
 
 						<aside class="notes">
@@ -1177,8 +1185,6 @@ MSBuild(x => x
           <section><h3>Build Setup</h3></section>
           <section><h3>CLI Experience</h3></section>
           <section><h3>Default Settings</h3></section>
-          <section><h3>Path Construction</h3></section>
-          <section><h3>Environment Adaption</h3></section>
           <section><h3>Documentation</h3></section>
         </section>
 
@@ -1206,9 +1212,9 @@ MSBuild(x => x
 					<section>
 						<table class="table center-table">
 				      <tr>
-				      	<td class="fragment"><span class="icon icon-code"></span><p>Consistency</p></td>
-				      	<td class="fragment"><span class="icon icon-lab"></span><p>Research</p></td>
-                <td class="fragment"><span class="icon icon-users4"></span><p>Collaboration</p></td>
+				      	<td><span class="icon icon-code"></span><p>Consistency</p></td>
+				      	<td><span class="icon icon-lab"></span><p>Research</p></td>
+                <td><span class="icon icon-users4"></span><p>Collaboration</p></td>
   			      </tr>
 				    </table>
 
