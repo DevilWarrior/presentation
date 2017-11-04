@@ -48,16 +48,24 @@
 							</ul>
 						</aside>
 					</section>
+          <section><h3>I'm lazy</h3></section>
+          <section data-background="#dddddd">
+            <h3>Automation</h3>
+            <img class="no-border" data-src="images/automation01.png" alt="Task Automation">
+            <span style="font-size:80%">Source:&nbsp;<a href="https://xkcd.com/1319/">https://xkcd.com/1319/</a></span>
+          </section>
+          <section data-background="#dddddd">
+            <h3>Automation</h3>
+            <img class="no-border" data-src="images/automation02.png" alt="Task Automation">
+            <span style="font-size:80%">Source:&nbsp;<a href="https://xkcd.com/1319/">https://xkcd.com/1319/</a></span>
+          </section>
 				</section>
 
 				<section>
-          <section><h2>Build Automation</h2></section>
-          <section><img class="no-border" data-src="images/profit.jpg" alt="Way to Success"></section>
-
           <section>
+            <h2>Build Automation</h2>
             <img class="no-border" data-src="images/gradle.png" alt="Build Automation" />
             <span style="font-size:80%">Source:&nbsp;<a href="https://gradle.org/">https://gradle.org</a></span>
-
             <aside class="notes">
               <ul>
                 <li>Process of automating the creation of a software build</li>
@@ -66,21 +74,20 @@
               </ul>
             </aside>
           </section>
+          
+          <section data-background="#dddddd">
+            <h3>Build Tools</h3>
+            <img class="no-border" data-src="images/tools.png" alt="Build Tools" />
+          </section>
 
           <section data-background="#dddddd">
-            <img class="no-border" data-src="images/ecosystem01.png" alt="Ecosystem of Build-Automation" />
-
-            <aside class="notes">
-              <ul>
-                <li>For some: ecosystem of build-automation looks like this</li>
-                <li>Tools that help us to restore dependencies, compile, pack, test, deploy our code</li>
-                <li>Build servers that will invoke the actual work</li>
-              </ul>
-            </aside>
+            <h3>Build Servers</h3>
+            <img class="no-border" data-src="images/build-servers.png" alt="Build Servers" />
           </section>
 
           <section>
             <img data-src="images/build-servers01.png" alt="Build Step Configuration" />
+            <span style="font-size:80%">Source:&nbsp;Bitrise</span>
 
             <aside class="notes">
               <ul>
@@ -102,6 +109,11 @@
             </ul>
           </section>
 
+          <section data-background="#dddddd">
+            <h3>Build Systems</h3>
+            <img class="no-border" data-src="images/build-systems.png" alt="Build Systems" />
+          </section>
+
           <section>
             <img data-src="images/build-servers02.png" alt="Build Step Configuration" />
 
@@ -114,7 +126,8 @@
             </aside>
           </section>
 
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem02.png" alt="Ecosystem of Build-Automation" /></section>
+
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems.png" alt="Build Systems" /></section>
 
           <section>
             <h4>XML-Based</h4>
@@ -124,22 +137,22 @@
             </ul>
           </section>
 
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem02.png" alt="Ecosystem of Build-Automation" /></section>
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem03.png" alt="Ecosystem of Build-Automation" /></section>
-
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems.png" alt="Build Systems" /></section>
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems02.png" alt="Build Systems" /></section>
+          
           <section>
             <h4>Non-CSharp</h4>
             <ul>
-              <li>Mindswitching</li>
-              <li>Trial &amp; Error</li>
               <li>Learning curve</li>
+              <li>Trial &amp; Error</li>
+              <li>Mindswitching</li>
               <li>Bootstrapping</li>
             </ul>
           </section>
 
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem03.png" alt="Ecosystem of Build-Automation" /></section>
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem04.png" alt="Ecosystem of Build-Automation" /></section>
-
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems02.png" alt="Build Systems" /></section>
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems03.png" alt="Build Systems" /></section>
+          
           <section>
             <h4>CAKE</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
@@ -153,31 +166,20 @@ Task("Default")
 
 RunTarget(target);
             </code></pre>
-
-            <aside class="notes">
-              <ul>
-                <li>Superset of C# / Scripting experience</li>
-                <li>Requires extensions to be installed</li>
-                <li>Requires how-to's to be read</li>
-                <li>Extended support only in Omnisharp-based IDEs</li>
-              </ul>
-            </aside>
           </section>
 
           <section>
             <h4>Cake</h4>
             <ul>
-              <li>Superset of C#</li>
               <li>Scripting experience</li>
+              <li>No pure C#</li>
               <li>Documentation lookups</li>
               <li>Mixed IDE experience</li>
-              <li>Manual implementation</li>
             </ul>
           </section>
 
-
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem04.png" alt="Ecosystem of Build-Automation" /></section>
-          <section data-background="#dddddd"><img class="no-border" data-src="images/ecosystem05.png" alt="Ecosystem of Build-Automation" /></section>
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems03.png" alt="Build Systems" /></section>
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems04.png" alt="Build Systems" /></section>
 
 				</section>
 
@@ -188,8 +190,8 @@ RunTarget(target);
 
 
         <section>
-          <img class="no-border" style="width:620px" data-src="images/logo.png" alt="Logo">
-          <h5 class="subtitle">Build Automation for C# Developers</h5>
+          <img class="no-border" style="width:650px" data-src="images/logo.png" alt="Logo">
+          <h5 class="subtitle">Build Automation System for C# Developers</h5>
         </section>
 
 
@@ -199,46 +201,21 @@ RunTarget(target);
 				<section>
 
 					<section><h2>Setup &amp; Execution</h2></section>
-          <section>
-            <h3>Advantages</h3>
-            <ul>
-              <li>Convenient setup</li>
-              <li>Cross-platform</li>
-              <li>Low ceremony</li>
-            </ul>
-          </section>
 
         </section>
 
 
-
-        <section>
-
-          <section><h2>Hello World</h2></section>
-
-					<section class="image-row">
-						<img class="no-border" data-src="images/visualstudio.png" alt="VisualStudio" />
-						<img class="no-border" data-src="images/rider.png" alt="JetBrains Rider" />
-						<img class="no-border" data-src="images/omnisharp.png" alt="OmniSharp" />
-					</section>
-
-					<section>
-            <h3>Advantages</h3>
-						<ul>
-              <li>Simple C# project</li>
-              <li>All features OOTB</li>
-              <li>Cultural change</li>
-						</ul>
-					</section>
-
-				</section>
-
-
-
 				<section>
 
-					<section><h2>Real world example</h2></section>
+					<section><h2>Authoring</h2></section>
           <section><img class="no-border" data-src="images/simple-project.svg" alt="Common Build Chain" /></section>
+
+          <section><h3>Advantages?</h3></section>
+          <section class="image-row">
+            <img class="no-border" data-src="images/visualstudio.png" alt="VisualStudio" />
+            <img class="no-border" data-src="images/rider.png" alt="JetBrains Rider" />
+            <img class="no-border" data-src="images/omnisharp.png" alt="OmniSharp" />
+          </section>
 
           <section>
             <h3><span style="border-bottom:6px solid #FFBB00">Everyone</span> can manage the build.</h3>
@@ -286,31 +263,7 @@ RunTarget(target);
             <p class="fragment">... and many more!</p>
           </section>
 
-          <section>
-            <img data-src="images/repo-cake.png" alt="Cake on GitHub" />
-            <img data-src="images/repo-fake.png" alt="Fake on GitHub" />
-          </section>
-
 				</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -320,49 +273,6 @@ RunTarget(target);
 					<section data-background="images/generation02.gif"><h2 class="fragment">Code-Generation</h2></section>
 
           <section><img class="no-border" data-src="images/code-generation.svg" alt="Code-Generation" /></section>
-
-          <section><h3>MSBuild</h3></section>
-          <section><img class="no-border" data-src="images/code-generation01.svg" alt="Code-Generation" /></section>
-					<section>
-						<h3>Reference</h3>
-						<img data-src="images/msbuild_reference01.png" style="height:80%;width:80%" />
-					</section>
-					<section>
-						<h3>Reference</h3>
-						<img data-src="images/msbuild_reference02.png" style="height:80%;width:80%" />
-					</section>
-
-          <section><img class="no-border" data-src="images/code-generation02.svg" alt="Code-Generation" /></section>
-
-					<section>
-						<h3>Metadata</h3>
-						<pre><code class="json" data-trim contenteditable style="font-size: 17px; line-height: 20px;max-height: 100%">
-{
-  "name": "NoLogo",
-  "type": "bool",
-  "format": "/nologo",
-  "help": "Don't display the startup banner or the copyright message."
-},
-{
-  "name": "Targets",
-  "type": "List&lt;string&gt;",
-  "format": "/target:{value}",
-  "separator": ";",
-  "help": "&lt;p&gt;Build the specified targets in the project. Specify each target ..."
-},
-{
-  "name": "Properties",
-  "type": "Dictionary&lt;string, object&gt;",
-  "format": "/property:{value}",
-  "itemFormat": "{key}={value}",
-  "disallowedCharacter": ";",
-  "help": "&lt;p&gt;Set or override the specified project-level properties, where name ...",
-  "delegates": [ ... ]
-}
-						</code></pre>
-					</section>
-
-          <section><img class="no-border" data-src="images/code-generation03.svg" alt="Code-Generation" /></section>
 
           <section>
             <h3>Generated Code</h3>
@@ -374,7 +284,6 @@ RunTarget(target);
               <li>XML documentation</li>
             </ul>
           </section>
-
 
           <section>
             <h3>Today</h3>
