@@ -306,7 +306,7 @@ RunTarget(target);
 					<section data-background="images/bryan.png">
 						<ul class="references">
 							<li><span class="icon icon-sphere2"></span>nuke.build</li>
-							<li><span class="icon icon-github"></span>github.com/nuke-build/nuke</li>
+							<li><span class="icon icon-github"></span>nuke-build/nuke <span style="color:#777">[<span id="stars">STARS</span>]</span></li>
 							<li><span class="icon icon-twitter"></span>@nukebuildnet</li>
 							<li><span class="icon icon-bubble"></span>gitter.im/nuke-build/nuke</li>
 							<li><span class="icon icon-presentation"></span>present.nuke.build</li>
@@ -342,6 +342,37 @@ RunTarget(target);
 					{ src: 'plugin/line-numbers/line-numbers.js', async: false }
 				]
 			});
+
+      function loadJSON(path, success, error)
+      {
+          var xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function()
+          {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                  if (xhr.status === 200) {
+                      if (success)
+                          success(JSON.parse(xhr.responseText));
+                  } else {
+                      if (error)
+                          error(xhr);
+                  }
+              }
+          };
+          xhr.open("GET", path, true);
+          xhr.send();
+      }
+
+      function updateStars() {
+        loadJSON(
+          'https://api.github.com/repos/nuke-build/nuke',
+          function(data) {
+            document.getElementById("stars").innerHTML = data.stargazers_count;
+            setTimeout(updateStars, 1000);
+          },
+          function(xhr) { console.error(xhr); });
+        
+      }
+      updateStars();
 		</script>
 	</body>
 </html>
