@@ -106,6 +106,7 @@
               <li>Build everywhere</li>
               <li>Better feedback cycle</li>
               <li>Minimal coupling</li>
+              <li>Versioning</li>
             </ul>
           </section>
 
@@ -114,48 +115,43 @@
             <img class="no-border" data-src="images/build-systems.png" alt="Build Systems" />
           </section>
 
-          <section>
-            <img data-src="images/build-servers02.png" alt="Build Step Configuration" />
+          <section data-background="#dddddd">
+            <h3>Build Systems</h3>
+            <img class="no-border" data-src="images/build-systems02.png" alt="Build Systems" />
 
             <aside class="notes">
               <ul>
-                <li>Invoking a script instead is easy to port</li>
-                <li>Much less coupling to the build server</li>
-                <li>Run build from everywhere</li>
+                <li>Is XML a handy language for defining build steps?</li>
+                <li>Is it easy to understand?</li>
+                <li>Can you do foreach loops?</li>
               </ul>
             </aside>
           </section>
 
+          <section data-background="#dddddd">
+            <h3>Build Systems</h3>
+            <img class="no-border" data-src="images/build-systems03.png" alt="Build Systems" />
 
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems.png" alt="Build Systems" /></section>
-
-          <section>
-            <h4>XML-Based</h4>
-            <ul>
-              <li>Very verbose</li>
-              <li>Difficult to extend</li>
-            </ul>
+            <aside class="notes">
+              <ul>
+                <li>Did you know FSharp before? If not, is it easy to hook someone up with the build? (Learning Curve)</li>
+                <li>Learning another language is good, but can also be a bottleneck when used as build system.</li>
+                <li>Are they naturally to maintain/extend? (Unknown unknowns)</li>
+                <li>Do you sometimes write 'var' instead of 'let'? (Mindswitching)</li>
+              </ul>
+            </aside>
           </section>
 
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems.png" alt="Build Systems" /></section>
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems02.png" alt="Build Systems" /></section>
-          
-          <section>
-            <h4>Non-CSharp</h4>
-            <ul>
-              <li>Learning curve</li>
-              <li>Trial &amp; Error</li>
-              <li>Mindswitching</li>
-              <li>Bootstrapping</li>
-            </ul>
+          <section data-background="#dddddd">
+            <h3>Build Systems</h3>
+            <img class="no-border" data-src="images/build-systems04.png" alt="Build Systems" />
           </section>
 
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems02.png" alt="Build Systems" /></section>
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems03.png" alt="Build Systems" /></section>
-          
           <section>
             <h4>CAKE</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+#tool "nuget:?package=GitVersion.CommandLine&amp;version=3.6.2"
+
 var target = Argument("target", "Default");
 
 Task("Default")
@@ -178,8 +174,7 @@ RunTarget(target);
             </ul>
           </section>
 
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems03.png" alt="Build Systems" /></section>
-          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems04.png" alt="Build Systems" /></section>
+          <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems.png" alt="Build Systems" /></section>
 
 				</section>
 
@@ -209,6 +204,7 @@ RunTarget(target);
                 <li>Tell about solution and platform choice</li>
                 <li>git status --untracked</li>
                 <li>Show added project in solution - it's a project!</li>
+                <li>Help + </li>
               </ul>
             </aside>
           </section>
@@ -219,11 +215,20 @@ RunTarget(target);
         <section>
 
           <section>
-            <h2>Authoring</h2>
+            <h2>Implementation</h2>
             <aside class="notes">
               <ul>
                 <li>Console application, default target</li>
                 <li>Targets are actual symbols -&gt; refactoring/navigation</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <img class="no-border" data-src="images/simple-project.svg" alt="Common Build Chain" />
+
+            <aside class="notes">
+              <ul>
                 <li>Clean: predefined directories; globbing</li>
                 <li>Restore: default settings</li>
                 <li>Compile: GitVersion field</li>
@@ -232,8 +237,6 @@ RunTarget(target);
               </ul>
             </aside>
           </section>
-
-          <section><img class="no-border" data-src="images/simple-project.svg" alt="Common Build Chain" /></section>
 
           <section class="image-row">
             <img class="no-border" data-src="images/visualstudio.png" alt="VisualStudio" />
@@ -323,6 +326,27 @@ RunTarget(target);
 
 
 				<section>
+
+          <section>
+            <h3>Thanks to</h3>
+<!--             <div style="float: left; width:50%">
+              Ulrich Buchgraber<br/>
+              Patrick Schwarz<br/>
+              Fabian Schmied<br/>
+              Dominik Rauch<br/>
+            </div>
+            <div style="display: inline; width:50%">
+              Ulrich Buchgraber<br/>
+              Ulrich Buchgraber<br/>
+            </div> -->
+            <ul>
+              <li>Patrick Schwarz</li>
+              <li>Robert Schili</li>
+              <li>Sebastian Karasek</li>
+              <li>Stefan Bertels</li>
+              <li>Ulrich Buchgraber</li>
+            </ul>
+          </section>
 
 					<section data-background="images/bryan.gif" data-autoslide="3000"></section>
 					<section data-background="images/bryan.png">
