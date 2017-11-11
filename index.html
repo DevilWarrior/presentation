@@ -83,18 +83,13 @@
           <section data-background="#dddddd">
             <h3>Build Servers</h3>
             <img class="no-border" data-src="images/build-servers.png" alt="Build Servers" />
-          </section>
-
-          <section>
-            <img data-src="images/build-servers01.png" alt="Build Step Configuration" />
-            <span style="font-size:80%">Source:&nbsp;Bitrise</span>
 
             <aside class="notes">
               <ul>
-                <li>Bunch of custom tasks implemented from the build server</li>
-                <li>Forces to rebuild from scratch when switching the server</li>
-                <li>Sometimes manual re-implementation</li>
-                <li>Harder to execute locally</li>
+                <li>Lock-in for complex scripts</li>
+                <li>Hard to execute local</li>
+                <li>Feedback cycle (occupying / money)</li>
+                <li>Versioning?</li>
               </ul>
             </aside>
           </section>
@@ -109,6 +104,8 @@
               <li>Versioning</li>
             </ul>
           </section>
+
+          <section>Build Tools + Build Server + Build System = &hearts;</section>
 
           <section data-background="#dddddd">
             <h3>Build Systems</h3>
@@ -128,16 +125,28 @@
             </aside>
           </section>
 
+          <section>
+            <h4>Path Concatenation</h4>
+            <pre><code class="xml" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+&lt;CombinePath BasePath="$(OutDir)"
+             Paths="$(ManifestFileName)"
+             Condition="$(CreateModule) == 'true'"&gt;
+  &lt;Output TaskParameter="CombinedPaths"
+          ItemName="ManifestPath"/&gt;
+&lt;/CombinePath&gt;
+            </code></pre>
+          </section>
+
           <section data-background="#dddddd">
             <h3>Build Systems</h3>
             <img class="no-border" data-src="images/build-systems03.png" alt="Build Systems" />
 
             <aside class="notes">
               <ul>
-                <li>Did you know FSharp before? If not, is it easy to hook someone up with the build? (Learning Curve)</li>
-                <li>Learning another language is good, but can also be a bottleneck when used as build system.</li>
-                <li>Are they naturally to maintain/extend? (Unknown unknowns)</li>
-                <li>Do you sometimes write 'var' instead of 'let'? (Mindswitching)</li>
+                <li>Did you know FSharp before? If not, is it easy to <b>hook someone up</b> with the build? (Learning Curve)</li>
+                <li>Learning <b>another language</b> is good, but can also be a <b>bottleneck</b> when used as build system.</li>
+                <li>As a C# developer, are they <b>naturally</b> to maintain/extend? Usually, we can't be sure (Unknown unknowns)</li>
+                <li>Do you sometimes write 'var' instead of '<b>let</b>'? (Mindswitching)</li>
               </ul>
             </aside>
           </section>
@@ -150,14 +159,12 @@
           <section>
             <h4>CAKE</h4>
             <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
-#tool "nuget:?package=GitVersion.CommandLine&amp;version=3.6.2"
-
 var target = Argument("target", "Default");
 
 Task("Default")
   .Does(() =>
   {
-    Information("Hello World from CAKE");
+    Information("Hello from CAKE");
   });
 
 RunTarget(target);
@@ -165,13 +172,67 @@ RunTarget(target);
           </section>
 
           <section>
-            <h4>Cake</h4>
-            <ul>
-              <li>Scripting experience</li>
-              <li>No pure C#</li>
-              <li>Documentation lookups</li>
-              <li>Mixed IDE experience</li>
-            </ul>
+            <h4>CAKE</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+var target = Argument("target", "Default");
+
+Task("Default")
+  .IsDependentOn("Initialization");
+
+Task("Initialization");
+
+RunTarget(target);
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>CAKE</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+Task("Default")
+  .Does(() =>
+{
+    Information("Hello from CAKE");
+    Just.Say("Something");
+});
+
+class Just
+{
+    public static void Say (string str)
+    {
+        Information(str);
+    }
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <h4>CAKE</h4>
+            <pre><code class="csharp" data-trim contenteditable style="font-size: 24px; line-height: 28px;max-height: 100%">
+Task("Default")
+  .Does(() =>
+{
+    Information("Hello from CAKE");
+    Just.Say("Something", Context);
+});
+
+class Just
+{
+    public static void Say (string str, ICakeContext ctx)
+    {
+        ctx.Information(str);
+    }
+}
+            </code></pre>
+          </section>
+
+          <section>
+            <img class="no-border" style="width:650px" data-src="images/cake-omni.png" alt="Cake favorites OmniSharp" />
+            <aside class="notes">
+              <ul>
+                <li>Just an observation: experience is much better in VSCode</li>
+                <li>Anyone using Cake in other IDEs? How do you know which alias to use?</li>
+              </ul>
+            </aside>
           </section>
 
           <section data-background="#dddddd"><h3>Build Systems</h3><img class="no-border" data-src="images/build-systems.png" alt="Build Systems" /></section>
@@ -249,7 +310,9 @@ RunTarget(target);
 
             <aside class="notes">
               <ul>
-                <li>How do you debug a running application?</li>
+                <li>Want to discover a method? Go to declaration!</li>
+                <li>Refactorings? Use your IDE features!</li>
+                <li>Debugging? Set a breakpoint and run!</li>
               </ul>
             </aside>
           </section>
@@ -281,8 +344,9 @@ RunTarget(target);
 
 
 
+
+
 				<section>
-          <section><img data-src="images/build.jpg" alt="Writing a Build System" /></section>
 
           <section data-background="#dddddd">
             <h3>Tools</h3>
@@ -290,14 +354,12 @@ RunTarget(target);
             <p class="fragment">... and many more!</p>
           </section>
 
-				</section>
+          <section><h3>How do we get support?</h3></section>
 
+          <section data-background="images/generation02.gif"><h2 class="fragment">Code-Generation</h2></section>
+					<section><h2>Code-Generation</h2></section>
 
-				<section>
-
-					<section data-background="images/generation02.gif"><h2 class="fragment">Code-Generation</h2></section>
-
-          <section><img class="no-border" data-src="images/code-generation.svg" alt="Code-Generation" /></section>
+          <section><img class="no-border" style="width:120%" data-src="images/code-generation.svg" alt="Code-Generation" /></section>
 
           <section>
             <h3>Generated Code</h3>
@@ -307,16 +369,6 @@ RunTarget(target);
               <li>Argument configuration</li>
               <li>XML documentation</li>
               <li>Assertions</li>
-            </ul>
-          </section>
-
-          <section>
-            <h3>Today</h3>
-            <ul>
-              <li>19 CLI tools</li>
-              <li>4.000 lines of metadata</li>
-              <li>20.000 lines of generated code</li>
-              <li>100 lines of custom code</li>
             </ul>
           </section>
 
