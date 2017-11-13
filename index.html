@@ -137,9 +137,9 @@
 
             <aside class="notes">
               <ul>
-                <li>Is XML a handy language for defining build steps?</li>
-                <li>Is it easy to understand?</li>
-                <li>Can you do foreach loops?</li>
+                <li>Is MSBuild a handy build system?</li>
+                <li>Yes, but mostly for project related information (precompile, code-generation).</li>
+                <li>Not so much for tool invocations, loops, conditional code</li>
               </ul>
             </aside>
           </section>
@@ -162,10 +162,10 @@
 
             <aside class="notes">
               <ul>
-                <li>Did you know FSharp before? If not, is it easy to <b>hook someone up</b> with the build? (Learning Curve)</li>
-                <li>Learning <b>another language</b> is good, but can also be a <b>bottleneck</b> when used as build system.</li>
-                <li>As a C# developer, are they <b>naturally</b> to maintain/extend? Usually, we can't be sure (Unknown unknowns)</li>
-                <li>Do you sometimes write 'var' instead of '<b>let</b>'? (Mindswitching)</li>
+                <li>If you're using one of these, there are 3 different situations I can think of:</li>
+                <li>1. You're already using the language inside your project - everything alright.</li>
+                <li>2. You point out that one person, that is responsible for the build - might become a bottleneck.</li>
+                <li>3. Everyone needs to know about the new language - increased complexity for the team.</li>
               </ul>
             </aside>
           </section>
@@ -198,7 +198,7 @@ var target = Argument("target", "Default");
 Task("Default")
   .IsDependentOn("Initialization");
 
-Task("Initialization");
+Task("Initialisation");
 
 RunTarget(target);
             </code></pre>
